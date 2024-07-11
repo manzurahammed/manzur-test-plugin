@@ -1,0 +1,52 @@
+.wrap.manzur-test-plugin {
+	padding: 20px;
+	background-color: #f9f9f9;
+	border-radius: 8px;
+	border: 1px solid #e1e1e1;
+}
+
+.manzur-test-plugin-table-title {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
+}
+
+.manzur-test-plugin-table-title h1 {
+	margin: 0;
+	font-size: 24px;
+}
+
+.wrap.manzur-test-plugin .refresh-form {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.wrap.manzur-test-plugin .refresh-form #my-button {
+	margin-left: 10px;
+}
+
+.wrap.manzur-test-plugin .wp-list-table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.wrap.manzur-test-plugin .wp-list-table th,
+.wrap.manzur-test-plugin .wp-list-table td {
+	padding: 10px;
+	border: 1px solid #e1e1e1;
+	text-align: left;
+}
+
+.wrap.manzur-test-plugin .wp-list-table th {
+	background-color: #f1f1f1;
+	font-weight: bold;
+}
+
+.wrap.manzur-test-plugin .wp-list-table tbody tr:nth-child(even) {
+	background-color: #f9f9f9;
+}
+
+.wrap.manzur-test-plugin .wp-list-table tbody tr:hover {
+	background-color: #f1f1f1;
+}
