@@ -1,13 +1,18 @@
 {
-  "name": "manzur-test-plugin",
-  "version": "1.0.0",
-  "description": "",
-  "scripts": {
-    "start": "wp-scripts start",
-    "build": "wp-scripts build"
-  },
-  "devDependencies": {
-	"@wordpress/scripts": "^27.8.0"
-  },
-  "files": [ "*" ]
+	"name": "manzur-test-plugin",
+	"version": "1.0.0",
+	"description": "",
+	"scripts": {
+		"start": "wp-scripts start",
+		"build": "wp-scripts build",
+		"format": "wp-scripts format",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^27.8.0"
+	},
+	"files": [
+		"*"
+	]
 }

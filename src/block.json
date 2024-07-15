@@ -1,33 +1,28 @@
 {
-  "apiVersion": 3,
-  "title": "API Data Table",
-  "name": "manzur/api-data-table",
-  "category": "widgets",
-  "icon": "smiley",
-  "supports": {
-	"align": true
-  },
-  "attributes": {
-	"tableData": {
-	  "type": "object"
+	"apiVersion": 3,
+	"title": "API Data Table",
+	"name": "manzur/api-data-table",
+	"category": "widgets",
+	"icon": "smiley",
+	"supports": {
+		"align": true
 	},
-	"visibleColumns": {
-	  "type": "object",
-	  "default": {
-		"id": true,
-		"fname": true,
-		"lname": true,
-		"email": true,
-		"date": true
-	  }
-	}
-  },
-  "keywords": [
-	"api",
-	"data",
-	"table",
-	"manzur"
-  ],
-  "editorScript": "file:./index.js",
-  "style": "file:./style-index.css"
+	"attributes": {
+		"tableData": {
+			"type": "object"
+		},
+		"visibleColumns": {
+			"type": "object",
+			"default": {
+				"id": true,
+				"fname": true,
+				"lname": true,
+				"email": true,
+				"date": true
+			}
+		}
+	},
+	"keywords": [ "api", "data", "table", "manzur" ],
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css"
 }

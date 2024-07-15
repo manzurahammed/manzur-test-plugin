@@ -1,37 +1,37 @@
 {
-  "name": "manzur/testplugin",
-  "description": "A plugin to fetch and display data",
-  "type": "project",
-  "config": {
-    "platform": {
-      "php": "7.4"
-    },
-    "allow-plugins": {
-      "dealerdirect/phpcodesniffer-composer-installer": true
-    }
-  },
-  "homepage": "https://manzur.me/",
-  "minimum-stability": "dev",
-  "license": "GPL-2.0+",
-  "authors": [
-    {
-      "name": "Manzur",
-      "homepage": "https://manzur.me"
-    }
-  ],
-  "require": {
-    "php": ">=7.4"
-  },
-  "require-dev": {
-    "wp-coding-standards/wpcs": "^3.0",
-    "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
-    "phpcompatibility/phpcompatibility-wp": "^2.1",
-    "phpunit/phpunit": "^9",
-    "yoast/phpunit-polyfills": "^1.0"
-  },
-  "autoload": {
-    "psr-4": {
-      "MANZUR\\TestPlugin\\": "includes/"
-    }
-  }
+	"name": "manzur/testplugin",
+	"description": "A plugin to fetch and display data",
+	"type": "project",
+	"config": {
+		"platform": {
+			"php": "7.4"
+		},
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	},
+	"homepage": "https://manzur.me/",
+	"minimum-stability": "dev",
+	"license": "GPL-2.0+",
+	"authors": [
+		{
+			"name": "Manzur",
+			"homepage": "https://manzur.me"
+		}
+	],
+	"require": {
+		"php": ">=7.4"
+	},
+	"require-dev": {
+		"wp-coding-standards/wpcs": "^3.0",
+		"dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+		"phpcompatibility/phpcompatibility-wp": "^2.1",
+		"phpunit/phpunit": "^9",
+		"yoast/phpunit-polyfills": "^1.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"MANZUR\\TestPlugin\\": "includes/"
+		}
+	}
 }
