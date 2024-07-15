@@ -14,6 +14,13 @@ use MANZUR\TestPlugin\Core\Singleton;
 class Admin_Page extends Singleton {
 
 	/**
+	 * The page slug.
+	 *
+	 * @var string
+	 */
+	private $page_slug = 'manzur_test_plugin_data_table';
+
+	/**
 	 * Initialize hooks for the admin page.
 	 */
 	public function init() {
@@ -25,7 +32,11 @@ class Admin_Page extends Singleton {
 	/**
 	 * Enqueue admin styles.
 	 */
-	public function enqueue_styles() {
+	public function enqueue_styles( $hook_suffix ) {
+		if ( 'toplevel_page_' . $this->page_slug !== $hook_suffix ) {
+			return;
+		}
+
 		wp_enqueue_style( 'manzur-test-plugin-admin-css', MANZUR_PLUGINTEST_ASSETS_URL . '/css/admin.css' );
 	}
 
@@ -35,7 +46,7 @@ class Admin_Page extends Singleton {
 	 * Validates the nonce and refreshes the API data. Redirects with a status message.
 	 */
 	public function refresh_api_data() {
-		if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( $_POST['nonce'] ), 'manzur_post_nonce' ) ) {
+		if ( !isset( $_POST[ 'nonce' ] ) || !wp_verify_nonce( sanitize_text_field( $_POST[ 'nonce' ] ), 'manzur_post_nonce' ) ) {
 			$this->redirect_with_message( 'failed' );
 		}
 
@@ -59,12 +70,12 @@ class Admin_Page extends Singleton {
 	 */
 	public function register_admin_page() {
 		add_menu_page(
-			__( 'API Data', 'manzur-test-plugin' ),
-			__( 'API Data', 'manzur-test-plugin' ),
-			'manage_options',
-			'manzur-test-plugin-data-table',
-			array( $this, 'display_api_data' ),
-			'dashicons-admin-generic'
+				__( 'API Data', 'manzur-test-plugin' ),
+				__( 'API Data', 'manzur-test-plugin' ),
+				'manage_options',
+				$this->page_slug,
+				array( $this, 'display_api_data' ),
+				'dashicons-admin-generic'
 		);
 	}
 
@@ -75,7 +86,7 @@ class Admin_Page extends Singleton {
 		$data = Data_Manager::get_data();
 		$url  = admin_url( 'admin-post.php' );
 
-		if ( empty( $data['data'] ) ) {
+		if ( empty( $data[ 'data' ] ) ) {
 			$this->display_notice( 'error', __( 'No data found.', 'manzur-test-plugin' ) );
 			return;
 		}
@@ -83,16 +94,16 @@ class Admin_Page extends Singleton {
 		?>
 		<div class="wrap manzur-test-plugin">
 			<div class="manzur-test-plugin-table-title">
-				<h1><?php echo esc_html( $data['title'] ); ?></h1>
+				<h1><?php echo esc_html( $data[ 'title' ] ); ?></h1>
 				<?php $this->display_refresh_message(); ?>
 				<form method="post" action="<?php echo esc_url( $url ); ?>" class="refresh-form">
 					<input type="hidden" name="action" value="manzur_refresh_api_data">
 					<input type="hidden" name="nonce"
-							value="<?php echo esc_attr( wp_create_nonce( 'manzur_post_nonce' ) ); ?>">
+						   value="<?php echo esc_attr( wp_create_nonce( 'manzur_post_nonce' ) ); ?>">
 					<?php submit_button( __( 'Refresh Data', 'manzur-test-plugin' ), 'primary', 'refresh_data', false, array( 'id' => 'my-button' ) ); ?>
 				</form>
 			</div>
-			<?php if ( empty( $data['data']['rows'] ) ) : ?>
+			<?php if ( empty( $data[ 'data' ][ 'rows' ] ) ) : ?>
 				<div class="notice notice-error">
 					<p><?php _e( 'No data found.', 'manzur-test-plugin' ); ?></p>
 				</div>
@@ -100,13 +111,13 @@ class Admin_Page extends Singleton {
 				<table class="wp-list-table widefat fixed striped">
 					<thead>
 					<tr>
-						<?php foreach ( $data['data']['headers'] as $header_name ) : ?>
+						<?php foreach ( $data[ 'data' ][ 'headers' ] as $header_name ) : ?>
 							<th><?php echo esc_html( $header_name ); ?></th>
 						<?php endforeach; ?>
 					</tr>
 					</thead>
 					<tbody>
-					<?php foreach ( $data['data']['rows'] as $item ) : ?>
+					<?php foreach ( $data[ 'data' ][ 'rows' ] as $item ) : ?>
 						<tr>
 							<?php foreach ( $item as $value ) : ?>
 								<td><?php echo esc_html( $value ); ?></td>
@@ -124,8 +135,8 @@ class Admin_Page extends Singleton {
 	 * Display refresh status message.
 	 */
 	private function display_refresh_message() {
-		if ( isset( $_GET['refresh'] ) ) {
-			$refresh_status = sanitize_text_field( $_GET['refresh'] );
+		if ( isset( $_GET[ 'refresh' ] ) ) {
+			$refresh_status = sanitize_text_field( $_GET[ 'refresh' ] );
 			if ( 'success' === $refresh_status ) {
 				$this->display_notice( 'success', __( 'Data refreshed successfully.', 'manzur-test-plugin' ) );
 			} elseif ( 'failed' === $refresh_status ) {
